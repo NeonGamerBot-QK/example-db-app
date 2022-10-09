@@ -27,3 +27,10 @@ model Category {
     description String
     products    Product[]
 }
+
+model posts {
+    id  Int @id @default(autoincrement())
+    name String
+    description String
+    date Decimal
+}

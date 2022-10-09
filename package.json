@@ -3,10 +3,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:start": "next build && next start",
     "start": "next start",
     "seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@prisma/client": "3.10.0",
     "next": "latest",
     "react": "17.0.2",

@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+  --bg-color: white;
+  --fg2-color: #ffff;
+  --fg-color: black;
+  --section-background-color: linear-gradient(
+    to bottom left,
+    rgba(17, 16, 16, 0.582),
+    rgba(12, 8, 24, 0.904)
+  );
+}
+html {
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+}
+body {
+  transition: all 1.1 ease-in-out !important;
+}
+.product {
+  background-color: var(--fg2-color);
+}
+.product span {
+  background-color: var(--fg2-color);
+  color: var(--fg-color);
+}
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+}

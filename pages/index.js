@@ -1,9 +1,13 @@
 import Head from 'next/head'
 import Product from '../components/Product'
 import prisma from '../lib/prisma'
-
-export default function Home({ products }) {
+import { useRouter } from 'next/router'
+export default function Home({ posts, theme }) {
+  // const path = window.location.pathname
+  const router = useRouter();
+  // router.asPath
   return (
+    <>
     <div>
       <Head>
         <title>PlanetScale Next.js Quickstart</title>
@@ -12,35 +16,35 @@ export default function Home({ products }) {
       </Head>
 
       <main className="p-10 mx-auto max-w-4xl">
-        <h1 className="text-6xl font-bold mb-4 text-center">Next.js Starter</h1>
+        <h1 className="text-6xl font-bold mb-4 text-center">Posts</h1>
         <p className="mb-20 text-xl text-center">
-          🔥 Shop from the hottest items in the world 🔥
+         List of all the posts
         </p>
+       
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-center  gap-4">
-          {products.map((product) => (
-            <Product product={product} key={product.id} />
+        {posts.map((product) => (
+            <a href={`/${product.id}`} key={product.id}><Product product={product}  /></a>
           ))}
         </div>
+        <br />
       </main>
-
-      <footer></footer>
     </div>
+    </>
   )
 }
 
 export async function getStaticProps(context) {
-  const data = await prisma.product.findMany({
-    include: {
-      category: true,
-    },
-  })
+  const data = await prisma.posts.findMany({ 
+    where: {}
+   })
 
-  //convert decimal value to string to pass through as json
-  const products = data.map((product) => ({
+  //convert decimal value to string to pass through as yarn start
+
+  const posts = data.map((product) => ({
     ...product,
-    price: product.price.toString(),
+    date: product.date.toString(),
   }))
   return {
-    props: { products },
+    props: { posts },
   }
 }
